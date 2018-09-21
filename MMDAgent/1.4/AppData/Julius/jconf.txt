@@ -1,0 +1,12 @@
+-lmp         12 -9
+-lmp2        12 -5
+-b           50
+-tmix        1
+-n           1
+-output      1
+-input       mic
+-rejectshort 500
+-headmargin  70
+-tailmargin  60
+-zmeanframe
+-lv          50
