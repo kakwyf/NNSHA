@@ -144,8 +144,8 @@
 # 0011-0020 Initialization
 
 0    11   <eps>                               MODEL_ADD|bootscreen|Accessory\bootscreen\bootscreen.pmd|0.0,12.85,17.6|0.0,0.0,0.0|OFF
-11   12   MODEL_EVENT_ADD|bootscreen          MODEL_ADD|mei|Model\mei\mei.pmd|0.0,0.0,-14.0
+11   12   MODEL_EVENT_ADD|bootscreen          MODEL_ADD|mei2|Model\mei\mei.pmd|0.0,0.0,-14.0
 12   13   <eps>                               STAGE|Stage\building2\floor.bmp,Stage\building2\background.bmp
-13   14   <eps>                               MOTION_ADD|mei|base|Motion\mei_wait\mei_wait.vmd|FULL|LOOP|ON|OFF
+13   14   <eps>                               MOTION_ADD|mei2|base|Motion\mei_wait\mei_wait.vmd|FULL|LOOP|ON|OFF
 14   15   <eps>                               TIMER_START|bootscreen|1.5
 15   2    TIMER_EVENT_STOP|bootscreen         MODEL_DELETE|bootscreen

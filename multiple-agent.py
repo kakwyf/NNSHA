@@ -145,8 +145,8 @@ def command_interface():
 
   #実験の時、事前に準備完了のシステムを[sキー+enterキー]を押すだけで起動できる
   #この遅延はagentの機能に関係がない。
-  start=input("push s and then sleep(18):")
-  time.sleep(18)
+  start=input("push s:")
+  time.sleep(5)
 
 
 
@@ -173,12 +173,23 @@ def command_interface():
     data0=0 # Localの音圧　(PC1)
     data1=0 # Remoteの音圧　（PC2）
 
-  #PC2から音圧の値を取得し、data1に保存
-    data1, remoteAddress = remoteSocket.recvfrom(512)
-    data1=data1.decode('utf8')
-    data1=int(data1)
-    print('remote:',data1)
+  #PC2から話者の状態を取得し、data_PC2に保存
     
+    try:
+      data_PC2, remoteAddress = remoteSocket.recvfrom(512)
+      data_PC2=data1.decode('utf8')
+      data_PC2=int(data_PC2)
+      print('PC2:',data_PC2)
+    except:
+      #print(' ')
+      a=1
+    else:
+      if data_PC2=1:
+        NNSspeaking=True
+      elif data_PC2=0:
+        NNSspeaking=False
+
+        
     try:
       log = mmdSocket0.recv(512)
       #print('agent log:',log)
@@ -203,7 +214,7 @@ def command_interface():
     data0=np.max(audio_data) #Localの音圧の値を取得し、data0に保存
     print ('local:',data0)
 
-
+'''
 #音圧が1500以上か以下か、話してるかどうかを判断
     
     if data0>1500:
@@ -219,7 +230,7 @@ def command_interface():
     else:
       #print('remote話していない')
       NNSspeaking=False
-
+'''
 
 
 
@@ -232,7 +243,7 @@ def command_interface():
         silenceStartTime=time.time()
         #print('タイマースタート，silenceStartTime:',silenceStartTime)
         
-      elif silenceStartTime!=-1 and time.time()-silenceStartTime>=2:#誰も話していない　& タイマー実行中
+      elif silenceStartTime!=-1 and time.time()-silenceStartTime>=1:#誰も話していない　& タイマー実行中
         #print('agent介入')
         #print("介入時間:",time.time())
         while recv[-1] in '!.':
